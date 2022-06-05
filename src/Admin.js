@@ -5,37 +5,44 @@ import Button from "react-bootstrap/Button";
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import axios from 'axios';
+import $ from 'jquery';
+import BlogForm from "./components/BlogForm.js";
+import MDEditor from '@uiw/react-markdown-editor';
 
 
 const Admin = () => {
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [isAuth, setAuth] = useState(false);
+  const [value, setValue] = React.useState("**Hello world!!!**");
 
-  function handleSubmit() {
-    var data = {"email": email,"password":password};
-    axios.post('http://localhost:8082/login', data)
-        .then(res => {
-          if (res == 200) {
-            setAuth(true);
-          }
-          console.log(res);
-        })
-        .catch(err => {
-          console.log("Error!");
-        })
+  function handleSubmit(event) {
+    var data = {"username": username,"password":password};
     event.preventDefault();
+    $.ajax({
+      url: 'http://localhost:8082/login',
+      method: 'POST',
+      data: data,
+      contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+      success: function(data, status) {
+        console.log(data);
+        setAuth(true);
+      },
+      error: function(data, status) {
+        console.log(data.status + " " + data.responseText);
+        setAuth(false);
+      }
+    });
   }
 
   const AdminLogin = (
-
         <Form onSubmit={handleSubmit}>
           <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label>Email address</Form.Label>
+            <Form.Label>Username</Form.Label>
             <Form.Control
-              type="email"
-              placeholder="Enter email"
-              onChange={(e) => setEmail(e.target.value)}
+              type="username"
+              placeholder="Username"
+              onChange={(e) => setUsername(e.target.value)}
             />
           </Form.Group>
 
@@ -56,9 +63,11 @@ const Admin = () => {
         </Form>
   );
 
+  function handleCreatePost(createPost) {}
+
   const AdminPortal = (
-    <p>Successfull Login</p>
-  )
+      <BlogForm />
+    )
 
   return (
     <body>

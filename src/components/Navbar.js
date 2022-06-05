@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 const Navbar = (props) => {
+
   const items = props.titles.split(",");
   const listItems = items.map((item) => (
     <a key={item} class="p-2 text-muted" href={item}>

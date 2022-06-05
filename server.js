@@ -3,6 +3,8 @@ const app = express();
 const mongoose = require('mongoose');
 const User = require('./models/User');
 var cors = require('cors');
+const bodyParser = require("body-parser");
+app.use(bodyParser.urlencoded({extended:true}));
 
 const connectDB = async () => {
   try {
@@ -17,26 +19,26 @@ const connectDB = async () => {
 };
 
 connectDB();
-app.use(cors({ origin: true, credentials: true }));
+app.use(cors({ origin: true, credentials: true, methods: "GET,HEAD,PUT,PATCH,POST"}));
 app.get('/', (req, res) => res.send('Hello world!'));
 app.post('/login', function(req, res) {
-  res.send('Login test')
-  username = req.body.username;
+  console.log(req.body);
+  username = req.body.email;
   password = req.body.password;
   User.findOne({usernmae:username}, function(err, found){
     if (err) {
       console.log("Invalid user!");
       console.log(err);
-      response.send(403);
+      res.send(403);
     }
     if (found) {
-      if (found.password == passwrd) {
+      if (found.password == password) {
         console.log("Login success!");
-        response.send(200);
+        res.send(200);
       }
       else {
         console.log("Invalid password!");
-        response.send(403);
+        res.send(403);
       }
     }
   })
