@@ -18,7 +18,7 @@ const Home = () => (
     <Container>
       <Row>
         <BlogShell title="Test"></BlogShell>
-        <Sidebar />
+        <Sidebar display="True"/>
       </Row>
     </Container>
   </body>

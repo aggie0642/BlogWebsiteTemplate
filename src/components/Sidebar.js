@@ -1,7 +1,8 @@
 import React from "react";
 
-const Sidebar = () => {
-  return (
+const Sidebar = (props) => {
+  if ({props.display} == "True") {
+    return (
     <aside class="col-md-4 blog-sidebar">
       <div class="p-3 mb-3 bg-light rounded">
         <h4 class="font-italic">About</h4>
@@ -37,6 +38,10 @@ const Sidebar = () => {
       </div>
     </aside>
   );
+  }
+  if ({props.display} != "True") {
+    return ()
+  }
 };
 
 export default Sidebar;
