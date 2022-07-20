@@ -1,0 +1,7 @@
+start mongoDB
+node server.js
+/src/npm start
+
+
+username adminuser
+password Z7jCz6LeYmyqc7

@@ -6,7 +6,7 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import axios from 'axios';
 import $ from 'jquery';
-import BlogForm from "./components/BlogForm.js";
+import BlogShell from "./components/BlogShell.js";
 import MDEditor from '@uiw/react-markdown-editor';
 
 
@@ -66,7 +66,7 @@ const Admin = () => {
   function handleCreatePost(createPost) {}
 
   const AdminPortal = (
-      <BlogForm />
+      <BlogShell />
     )
 
   return (

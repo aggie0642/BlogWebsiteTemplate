@@ -8,17 +8,15 @@ import Sidebar from "./components/Sidebar.js";
 import BlogShell from "./components/BlogShell.js";
 
 const Home = () => (
-  <body>
-    <Container className="p-3">
+  <body className="bg-slate-200">
+    <Container className="p-3 bg-slate-300">
       <Header />
       <Navbar titles="Home,Link 1,Link 2,Link 3"></Navbar>
-      <h1 className="jumbotron">Blog Template</h1>
     </Container>
-
     <Container>
       <Row>
-        <BlogShell title="Test"></BlogShell>
-        <Sidebar display="True"/>
+        <BlogShell title="Recent Posts"></BlogShell>
+        <Sidebar display="True"></Sidebar>
       </Row>
     </Container>
   </body>
